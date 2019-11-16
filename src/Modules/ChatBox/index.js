@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from '../../Components/Message';
+import base from '../../base';
 
 export default class ChatBox extends React.Component {
   constructor(props) {
@@ -10,6 +11,14 @@ export default class ChatBox extends React.Component {
       messages: {}
     }
   }
+
+  componentWillMount() {
+    this.ref = base.syncState('/', {
+      context: this,
+      state: 'messages'
+    })
+  }
+
 
   addMessage = (e) => {
     e.preventDefault();
@@ -23,8 +32,10 @@ export default class ChatBox extends React.Component {
 
     messages[`Message-${timestamp}`] = message
 
-    message.content.length > 0 &&
+    message.content.length > 0 && 
       this.setState({messages})
+
+    this.formInput.reset();
   }
 
   handleChange = (e) => {
@@ -43,7 +54,7 @@ export default class ChatBox extends React.Component {
             })
           }
         </div>
-        <form className="message-form" onSubmit={e => this.addMessage(e)}>
+        <form className="message-form" onSubmit={e => this.addMessage(e)} ref={form => this.formInput = form}>
           <textarea placeholder="New message"
                     value={this.state.message}
                     onChange={e => this.handleChange(e)}>
