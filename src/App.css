@@ -14,7 +14,8 @@
   padding: 5px;
 }
 
-.login-form button {
+.login-form button,
+.chat-box form button {
   margin-top: 20px;
   padding: 10px;
   background-color: #00FFFF;
@@ -24,4 +25,41 @@
 
 .login-form .err-message {
   color: red;
+}
+
+.chat-box {
+  border: solid 1px;
+  width: 40%;
+  margin: auto;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.chat-box form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.chat-box form textarea {
+  resize: none;
+  height: 120px;
+  font-size: 16px;
+}
+
+.message {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 0;
+}
+
+.message span {
+  font-weight: bold;
+  padding-right: 5px;
 }

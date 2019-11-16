@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Login from './Components/Login';
-import ChatBox from './Components/ChatBox';
+import Login from './Modules/Login';
+import ChatBox from './Modules/ChatBox';
 
 export default class App extends React.Component {
   render() {
