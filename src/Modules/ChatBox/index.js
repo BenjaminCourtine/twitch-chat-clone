@@ -12,13 +12,12 @@ export default class ChatBox extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.ref = base.syncState('/', {
       context: this,
       state: 'messages'
     })
   }
-
 
   addMessage = (e) => {
     e.preventDefault();
@@ -33,9 +32,14 @@ export default class ChatBox extends React.Component {
     messages[`Message-${timestamp}`] = message
 
     message.content.length > 0 && 
-      this.setState({messages})
+      this.setState({
+        messages,
+        message: ''
+      }, () => this.scrollToBottom(this.messages))
+  }
 
-    this.formInput.reset();
+  scrollToBottom = (el) => {
+    el.scrollTop = 100000;
   }
 
   handleChange = (e) => {
@@ -45,7 +49,7 @@ export default class ChatBox extends React.Component {
   render() {
     return(
       <div className="chat-box">
-        <div className="messages">
+        <div className="messages" ref={el => this.messages = el}>
           {
             Object.keys(this.state.messages).map((message, index) => {
               return (
@@ -54,9 +58,10 @@ export default class ChatBox extends React.Component {
             })
           }
         </div>
-        <form className="message-form" onSubmit={e => this.addMessage(e)} ref={form => this.formInput = form}>
+        <form className="message-form" onSubmit={async e => this.addMessage(e)}>
           <textarea placeholder="New message"
                     value={this.state.message}
+                    ref={textarea => this.textarea = textarea}
                     onChange={e => this.handleChange(e)}>
           </textarea>
           <button type="submit">Send</button>
