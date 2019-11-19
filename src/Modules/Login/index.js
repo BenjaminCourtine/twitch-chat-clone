@@ -8,10 +8,12 @@ export default class Login extends React.Component {
       pseudo: '',
     }
   }
-  
+
   handleSubmit = (e) => {
     e.preventDefault();
 
+    // @elie : funny that you don't use state here ! You write in the HTML
+    // @elie : Using a ternary here is not good for code readability
     this.state.pseudo.length < 3 ?
       document.querySelector('.err-message').innerHTML = 'Your pseudo is to short'
     :

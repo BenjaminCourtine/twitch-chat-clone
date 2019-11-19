@@ -4,6 +4,7 @@
 }
 
 .login-form {
+  /* @elie : told you flex is not the best , but that's ok :) */
   display: flex;
   flex-direction: column;
   width: 40%;
