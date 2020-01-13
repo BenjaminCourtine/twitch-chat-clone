@@ -26,7 +26,7 @@ export default class Login extends React.Component {
     return(
       <form className="login-form" onSubmit={(e) => this.handleSubmit(e)}>
         <input type="text"
-               placeholder="Pseudo"
+               placeholder="test"
                ref={input => this.pseudo = input}
                value={this.state.pseudo}
                onChange={e => this.handleChange(e)}
