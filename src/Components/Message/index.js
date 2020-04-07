@@ -1,5 +1,6 @@
 import React from 'react';
 
+// @elie: Nice component logic, Folders.
 function Message(props) {
   return (
     <div className="message">

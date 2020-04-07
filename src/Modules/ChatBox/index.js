@@ -21,7 +21,7 @@ export default class ChatBox extends React.Component {
 
   addMessage = (e) => {
     e.preventDefault();
-    
+
     const timestamp =  Date.now();
     const messages = {...this.state.messages}
     const message = {
@@ -31,11 +31,12 @@ export default class ChatBox extends React.Component {
 
     messages[`Message-${timestamp}`] = message
 
-    message.content.length > 0 && 
+    message.content.length > 0 &&
       this.setState({
         messages,
         message: ''
       }, () => this.scrollToBottom(this.messages))
+    // @elie : Interesting I did not know you could add a callback to setState :)
   }
 
   scrollToBottom = (el) => {
